@@ -1,4 +1,5 @@
 import Exercise from "../models/Exercise.js";
+import User from "../models/User.js";
 
 export const getAllExercises = async(req, res, next) =>{
     let exercises
@@ -33,9 +34,11 @@ export const updateExercise = async (req, res, next) =>{
     let exercise
 
     try {
-        exercise = await Exercise.findByIdAndUpdate(exerciseId, {
-            name
-        })
+        exercise = await Exercise.findByIdAndUpdate(exerciseId, 
+            {
+                name,
+            },
+        )
     }catch(err){
         return console.log(err)
     }

@@ -15,7 +15,7 @@ export const getAllUser = async(req,res,next) => {
 }
 
 export const signup = async (req,res, next) => {
-    const {name, email,password} = req.body
+    const {name, email,password, exercises} = req.body
     let existingUser;
     try{
         existingUser = await User.findOne({email})
@@ -30,8 +30,8 @@ export const signup = async (req,res, next) => {
         name, 
         email,
         password: hashedPassword,
+        exercises: exercises || []
     })
-    
 
     try {
         await user.save()
@@ -59,4 +59,25 @@ export const login = async(req, res, next) => {
         return res.status(400).json({message:"incorrect password"})
     }
     return res.status(200).json({message:"login succesful"})
+}
+
+export const updateUser = async (req, res, next) => {
+    const { name, email, password, user_level, xp, exercises} = req.body;
+    const userId = req.params.id;
+
+    try {
+        const user = await User.findByIdAndUpdate(userId, {
+            name,
+            email,
+            password: bcrypt.hashSync(password),
+            user_level,
+            xp,
+            exercises: exercises || []
+        }, { new: true });
+
+        return res.status(200).json({ user });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
 }

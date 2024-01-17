@@ -16,7 +16,7 @@ const orderSchema = new Schema({
         type: Date,
         required: true
     },
-    products: [
+    products: [ 
         {
             product: {
                 type: mongoose.Types.ObjectId,
@@ -25,9 +25,9 @@ const orderSchema = new Schema({
             },
             quantity: {
                 type: Number,
-                required: true,
-            },
-        },
+                required: true, 
+            }
+        }
     ],
 })
 

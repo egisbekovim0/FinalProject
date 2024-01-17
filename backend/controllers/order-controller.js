@@ -13,13 +13,14 @@ export const getAllOrders = async (req, res, next) => {
 
 
 export const addOrder = async (req, res, next) => {
-    const { user, status, order_date } = req.body;
+    const { user, status, order_date, products } = req.body;
 
     try {
         const order = new Order({
             user,
             status,
-            order_date
+            order_date,
+            products
         });
 
         await order.save();
@@ -33,13 +34,14 @@ export const addOrder = async (req, res, next) => {
 
 
 export const updateOrder = async (req, res, next) => {
-    const { status, order_date } = req.body;
+    const { status, order_date, products} = req.body;
     const orderId = req.params.id;
 
     try {
         const order = await Order.findByIdAndUpdate(orderId, {
             status,
-            order_date
+            order_date,
+            products
         });
 
         return res.status(200).json({ order });
