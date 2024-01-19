@@ -7,6 +7,11 @@ const exerciseSchema = new Schema({
         type: String,
         required: true
     },
+    exerciseType:{
+        type: mongoose.Types.ObjectId,
+        ref: "ExerciseType",
+        required: true,
+    },
 })
 
 export default mongoose.model("Exercise", exerciseSchema)
