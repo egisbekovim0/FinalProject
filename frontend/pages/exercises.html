@@ -32,6 +32,162 @@
           </div>
         </div>
       </header>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Levels and Progress Bar -->
+    <section id="courses" class="container p-5">
+        <h2 class="text-center">Your Training Progress</h2>
+        <!-- Progress bar component -->
+        <div class="progress">
+            <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%;"
+                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+        </div>
+    </section>
+
+    <!-- Exercise Cards -->
+    <section class="container p-5">
+        <div class="row">
+            <!-- Exercise Card 1 -->
+            <div class="col-3">
+                <div class="card w-75 transparent-card h-100">
+                    <img src="../assets/sitUp.jpg" class="card-img-top" alt="Exercise 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Sit ups</h5>
+                        <p class="card-text">Do it for your abs</p>
+                        <a id="sit-ups-button" class="btn btn-primary">Do 10 sit ups</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise Card 2 -->
+            <div class="col-3">
+                <div class="card w-75 transparent-card h-100">
+                    <img src="../assets/pushUp.jpg" class="card-img-top" alt="Exercise 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Push ups</h5>
+                        <p class="card-text">Do it for your upper body</p>
+                        <a id="push-ups-button" class="btn btn-primary">Do 10 push ups</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise Card 3 -->
+            <div class="col-3">
+                <div class="card w-75 transparent-card h-100" style="width: 18rem;">
+                    <img src="../assets/pullUp.jpg" class="card-img-top" alt="Exercise 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Pull ups</h5>
+                        <p class="card-text">Do it for your back strength</p>
+                        <a id="pull-ups-button" class="btn btn-primary">Do 5 pull ups</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise Card 4 -->
+            <div class="col-3">
+                <div class="card w-75 transparent-card h-100">
+                    <img src="../assets/squat.jpg" class="card-img-top" alt="Exercise 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Squats</h5>
+                        <p class="card-text">Do it for your legs</p>
+                        <a id="squats-button" class="btn btn-primary">Do 20 squats</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container mt-4 bg-white">
+        <div class="content-section mt-4 bg-white">
+            <h2>Armwrestling Techniques</h2>
+            <p>
+                Here you can find information about different armwrestling techniques and strategies.
+            </p>
+
+            <div class="card bg-gradient-card">
+                <div class="card-image">
+                    <img src="../assets/first.jpeg" alt="Technique 1" class="img-fluid">
+                </div>
+                <div class="card-content">
+                    <h3 class="text-black">Basic Armwrestling Techniques</h3>
+                    <p>Hook - This technique involves a supination of the hand and forearm, focusing on wrist strength.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card bg-gradient-card">
+                <div class="card-image">
+                    <img src="../assets/third.jpeg" alt="Technique 2" class="img-fluid">
+                </div>
+                <div class="card-content">
+                    <h3 class="text-black">Toproll Technique</h3>
+                    <p>A classic technique that relies on pronation of the hand and forearm.</p>
+                </div>
+            </div>
+
+            <div class="card bg-gradient-card">
+                <div class="card-image">
+                    <img src="../assets/second.jpeg" alt="Technique 3" class="img-fluid">
+                </div>
+                <div class="card-content">
+                    <h3 class="text-black">Advanced Strategies</h3>
+                    <p>In addition to these basic techniques, advanced armwrestlers often employ various strategies to
+                        gain the upper hand in matches.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-black text-white text-center py-4 bg-gradient-footer-opacity">
+        <blockquote>
+            <div class="footer-section">
+                <p>&copy; 2023 Armwrestling Category</p>
+            </div>
+        </blockquote>
+    </footer>
+    <script>
+        // Get references to the progress bar and exercise buttons
+        const progressBar = document.getElementById('progress-bar');
+        const sitUpsButton = document.getElementById('sit-ups-button');
+        const pushUpsButton = document.getElementById('push-ups-button');
+        const pullUpsButton = document.getElementById('pull-ups-button');
+        const squatsButton = document.getElementById('squats-button');
+
+
+        sitUpsButton.addEventListener('click', () => {
+            updateProgressBar(10);
+        });
+        pushUpsButton.addEventListener('click', () => {
+            updateProgressBar(10);
+        });
+        pullUpsButton.addEventListener('click', () => {
+            updateProgressBar(10);
+        });
+        squatsButton.addEventListener('click', () => {
+            updateProgressBar(10);
+        });
+
+
+        // Function to update the progress bar
+        function updateProgressBar(increaseBy) {
+
+            let currentValue = parseInt(progressBar.style.width, 10);
+            if (isNaN(currentValue)) {
+                currentValue = 0;
+            }
+
+            currentValue += increaseBy;
+
+            if (currentValue >= 100) {
+                currentValue = 0;
+            }
+
+
+            progressBar.style.width = `${currentValue}%`;
+            progressBar.textContent = `${currentValue}%`;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 </html>
