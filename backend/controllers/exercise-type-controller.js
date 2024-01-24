@@ -13,12 +13,11 @@ export const getAllExericiseTypes = async (req, res, next) => {
 
 
 export const addExerciseType = async (req, res, next) => {
-    const { exercise, category } = req.body;
+    const { name } = req.body;
 
     try {
         const exerciseType = new ExerciseType({
-            exercise,
-            category
+            name
         });
 
         await exerciseType.save();
@@ -32,12 +31,12 @@ export const addExerciseType = async (req, res, next) => {
 
 
 export const updateExerciseType = async (req, res, next) => {
-    const { category} = req.body;
+    const { name} = req.body;
     const exerciseTypeId = req.params.id;
 
     try {
         const exerciseType = await ExerciseType.findByIdAndUpdate(exerciseTypeId, {
-            category
+            name
         });
 
         return res.status(200).json({ exerciseType });

@@ -13,12 +13,11 @@ export const getAllProductCategories = async (req, res, next) => {
 
 
 export const addProductCategory = async (req, res, next) => {
-    const { product, category } = req.body;
+    const { name } = req.body;
 
     try {
         const productCategory = new ProductCategory({
-            product,
-            category
+            name
         });
 
         await productCategory.save();
@@ -32,12 +31,12 @@ export const addProductCategory = async (req, res, next) => {
 
 
 export const updateProductCategory = async (req, res, next) => {
-    const {category} = req.body;
+    const {name} = req.body;
     const productCategoryId = req.params.id;
 
     try {
         const productCategory = await ExerciseType.findByIdAndUpdate(productCategoryId, {
-            category
+            name
         });
 
         return res.status(200).json({ productCategory });

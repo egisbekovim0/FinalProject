@@ -14,12 +14,13 @@ export const getAllProducts = async(req, res, next) =>{
 }
 
 export const addProduct = async (req,res,next)=>{
-    const {name, description, price, stock} =req.body
+    const {name, description, price, stock, productCategory} =req.body
     const product = new Product({
         name,
         description,
         price,
-        stock
+        stock,
+        productCategory
     })
     try{
         await product.save()
@@ -31,7 +32,7 @@ export const addProduct = async (req,res,next)=>{
 }
 
 export const updateProduct = async (req, res, next) =>{
-    const {name, description, price, stock} = req.body
+    const {name, description, price, stock, productCategory} = req.body
     const productId = req.params.id
     let product
 
@@ -40,7 +41,8 @@ export const updateProduct = async (req, res, next) =>{
             name,
             description,
             price,
-            stock
+            stock,
+            productCategory
         })
     }catch(err){
         return console.log(err)

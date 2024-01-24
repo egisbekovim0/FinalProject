@@ -18,7 +18,12 @@ const productSchema = new Schema({
     stock: {
         type: Number,
         required: true
-    }
+    },
+    productCategory:{
+        type: mongoose.Types.ObjectId,
+        ref: "ProductCategory",
+        required: true,
+    },
 })
 
 export default mongoose.model("Product", productSchema)

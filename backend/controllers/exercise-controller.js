@@ -1,5 +1,5 @@
 import Exercise from "../models/Exercise.js";
-import User from "../models/User.js";
+
 
 export const getAllExercises = async(req, res, next) =>{
     let exercises
@@ -15,9 +15,10 @@ export const getAllExercises = async(req, res, next) =>{
 }
 
 export const addExercise = async (req,res,next)=>{
-    const {name} =req.body
+    const {name, exerciseType} =req.body
     const exercise = new Exercise({
-        name
+        name,
+        exerciseType
     })
     try{
         await exercise.save()
@@ -29,16 +30,15 @@ export const addExercise = async (req,res,next)=>{
 }
 
 export const updateExercise = async (req, res, next) =>{
-    const {name} = req.body
+    const {name,exerciseType } = req.body
     const exerciseId = req.params.id
     let exercise
 
     try {
-        exercise = await Exercise.findByIdAndUpdate(exerciseId, 
-            {
+        exercise = await Exercise.findByIdAndUpdate(exerciseId, {
                 name,
-            },
-        )
+                exerciseType
+        })
     }catch(err){
         return console.log(err)
     }

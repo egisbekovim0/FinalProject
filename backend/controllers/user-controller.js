@@ -81,3 +81,26 @@ export const updateUser = async (req, res, next) => {
         return res.status(500).json({ message: "Internal Server Error" });
     }
 }
+
+export const updateExerciseProgress = async (req, res, next) => {
+    const userId = req.params.id;
+    const exerciseId = req.params.exerciseId;
+    const progress = req.body.progress;
+  
+    try {
+      const result = await User.updateOne(
+        { _id: mongoose.Types.ObjectId(userId), "exercises.exercise": mongoose.Types.ObjectId(exerciseId) },
+        { $set: { "exercises.$.progress": progress } }
+      );
+  
+      if (result.nModified === 0) {
+        return res.status(404).json({ message: "User or Exercise not found" });
+      }
+  
+      return res.status(200).json({ message: "Exercise progress updated successfully" });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ message: "Internal Server Error" });
+    }
+  };
+  
