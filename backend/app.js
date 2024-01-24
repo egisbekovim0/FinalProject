@@ -34,7 +34,7 @@ const exerciseIds = [
 // const users = generateUsers(1000, exerciseIds);
 // const products = generateProducts(10); 
 
-// const orders = generateOrders(10, users, products); 
+// const orders = generateOrders(100, users, products); 
 // const exercises = generateExercises(5, exerciseTypes); 
 // const productCategories = generateProductCategories(3); 
 
@@ -101,12 +101,12 @@ mongoose.connect("mongodb://localhost:27017/TrainAnd").then(async () => {
     // User.insertMany(users)
     // .then(() => console.log('users seeded successfully'))
     // .catch((err) => console.error('Error seeding users:', err));
-    const users = await User.find().limit(1000);
-    const products = await Product.find().limit(10);
-    const orders = generateOrders(100, users, products); 
-    Order.insertMany(orders)
-    .then(() => console.log('orders seeded successfully'))
-    .catch((err) => console.error('Error seeding orders:', err));
+    // const users = await User.find().limit(1000);
+    // const products = await Product.find().limit(10);
+    // const orders = generateOrders(100, users, products); 
+    // Order.insertMany(orders)
+    // .then(() => console.log('orders seeded successfully'))
+    // .catch((err) => console.error('Error seeding orders:', err));
 
 
   app.listen(5009, () => {
